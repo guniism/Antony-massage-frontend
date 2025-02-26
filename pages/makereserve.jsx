@@ -22,7 +22,7 @@ export default function MakeReserve() {
     }
     const fetchShops = async () => {
         try {
-            const response = await fetch("/api/v1/massage-shops?page=1", {
+            const response = await fetch(`/api/v1/massage-shops`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function MakeReserve() {
     }
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("/api/v1/auth/me", {
+      const res = await fetch(`/api/v1/auth/me`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

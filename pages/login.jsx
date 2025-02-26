@@ -22,7 +22,7 @@ export default function Login(){
           return;
         }
         try {
-            const response = await fetch("/api/v1/auth/login", {
+            const response = await fetch(`/api/v1/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function Login(){
             localStorage.setItem("token", data.token);
             navigate("/");
 
-            console.log("Login successful!", data);
+            console.log("Login successful!");
         } catch (error) {
             setError("Error: " + error.message);
         }

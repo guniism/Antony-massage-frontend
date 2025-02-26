@@ -22,7 +22,7 @@ export default function Profile() {
       else{
           const fetchData = async () => {
               try {
-                  const response = await fetch("/api/v1/auth/me", {
+                  const response = await fetch(`/api/v1/auth/me`, {
                       method: "GET",
                       headers: {
                           "Content-Type": "application/json",
