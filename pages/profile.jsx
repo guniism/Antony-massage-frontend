@@ -22,7 +22,7 @@ export default function Profile() {
       else{
           const fetchData = async () => {
               try {
-                  const response = await fetch(`/api/v1/auth/me`, {
+                  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/me`, {
                       method: "GET",
                       headers: {
                           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export default function Profile() {
         </div>
         <div className='w-full pt-20'>
           <div className="w-96 mx-auto space-y-2 px-4">
-            <img src="src/assets/profile.jpeg"
+            <img src="/profile.jpeg"
               alt="Profile"
               width={150}
               height={150}
