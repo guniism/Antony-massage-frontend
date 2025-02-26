@@ -10,7 +10,7 @@ export default function Home() {
           <Navbar />
         </div>
         <div className='w-full'>
-          
+
 
 
 

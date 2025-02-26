@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function MassageShop() {
-  console.log("API URL:", import.meta.env.VITE_API_URL);
+
+
 
     const [shops, setShops] = useState([]);
 
     useEffect(() => {
       const fetchShops = async () => {
           try {
-              const response = await fetch(`/api/v1/massage-shops`, {
+              const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/massage-shops`, {
                   method: "GET",
                   headers: {
                       "Content-Type": "application/json",

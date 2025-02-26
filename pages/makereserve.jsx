@@ -22,7 +22,7 @@ export default function MakeReserve() {
     }
     const fetchShops = async () => {
         try {
-            const response = await fetch(`/api/v1/massage-shops`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/massage-shops`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function MakeReserve() {
     }
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`/api/v1/auth/me`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/me`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export default function MakeReserve() {
       // console.log("User Data:", dt.data._id);
       const userID = dt.data._id;
 
-      const response = await fetch(`/api/v1/massage-shops/${selectShop}/reservations`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/massage-shops/${selectShop}/reservations`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -19,7 +19,7 @@ export default function Header({ title }) {
             setLogin(true);
             const fetchData = async () => {
                 try {
-                    const response = await fetch(`/api/v1/auth/me`, {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/me`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",

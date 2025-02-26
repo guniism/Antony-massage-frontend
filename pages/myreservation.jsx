@@ -13,7 +13,7 @@ export default function Reservation() {
         }
         const fetchReservations = async () => {
             try {
-                const response = await fetch(`/api/v1/reservations`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/reservations`, {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,
@@ -39,9 +39,10 @@ export default function Reservation() {
     }, []);
 
     const handleDelete = async (id) => {
+   
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`/api/v1/reservations/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/reservations/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`
