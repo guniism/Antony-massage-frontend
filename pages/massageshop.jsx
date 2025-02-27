@@ -51,12 +51,18 @@ export default function MassageShop() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header title="Massage Shop" />
+      <Header title="Massage Shops"/>
       <div className="flex-1 flex flex-row">
-        <div className='border-r w-80 flex-none'>
+        <div className='border-r w-80 flex-none hidden md:block'>
           <Navbar />
         </div>
+        <div className="md:hidden fixed border-t h-44 bottom-0 left-0 w-full z-50 flex flex-row justify-around bg-white">
+          <Navbar />
+        </div>
+        
             <div className="w-full">
+                <h1 className="text-2xl mb-8 mt-10 text-[#D40B29] font-semibold md:hidden text-center">Massage shops</h1>
+
                 <div className="p-4 space-y-4 h-full overflow-y-auto ">
                     <ul className="space-y-4">
                     {shops.map((shop) => (
@@ -75,6 +81,7 @@ export default function MassageShop() {
                         </li>
                     ))}
                     </ul>
+                    <div className="md:hidden h-64"></div>
                 </div>
             </div>
 

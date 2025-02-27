@@ -79,7 +79,7 @@ export default function MakeReserve() {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            reserverDate: date,
+            reserveDate: date,
             user: userID,
           }),
       });
@@ -101,10 +101,14 @@ export default function MakeReserve() {
     <div className="flex flex-col min-h-screen">
       <Header title="Make Reservation" />
       <div className="flex-1 flex flex-row">
-        <div className='border-r w-80 flex-none'>
+        <div className='border-r w-80 flex-none hidden md:block'>
+          <Navbar />
+        </div>
+        <div className="md:hidden fixed border-t h-44 bottom-0 left-0 w-full z-50 flex flex-row justify-around bg-white">
           <Navbar />
         </div>
         <div className='w-full pt-20'>
+        <h1 className="text-2xl mb-8 text-[#D40B29] font-semibold md:hidden text-center">Make Reservation</h1>
           <div className="w-96 mx-auto space-y-2 px-4">
             <form onSubmit={handleSubmit} className='flex flex-col justify-evenly '>
             <h2 className="font-semibold pl-3">Reservation date</h2>
@@ -131,6 +135,7 @@ export default function MakeReserve() {
 
           </div>
         </div>
+        <div className="md:hidden h-64"></div>
       </div>
     </div>
   )

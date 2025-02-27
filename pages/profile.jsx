@@ -50,10 +50,14 @@ export default function Profile() {
     <div className="flex flex-col min-h-screen">
       <Header title="Profile" />
       <div className="flex-1 flex flex-row">
-        <div className='border-r w-80 flex-none'>
+        <div className='border-r w-80 flex-none hidden md:block'>
+          <Navbar />
+        </div>
+        <div className="md:hidden fixed border-t h-44 bottom-0 left-0 w-full z-50 flex flex-row justify-around bg-white">
           <Navbar />
         </div>
         <div className='w-full pt-20'>
+        <h1 className="text-2xl mb-8 text-[#D40B29] font-semibold md:hidden text-center">Profile</h1>
           <div className="w-96 mx-auto space-y-2 px-4">
             <img src="/profile.jpeg"
               alt="Profile"
@@ -68,8 +72,9 @@ export default function Profile() {
             
           </div>
 
-  
+          <div className="md:hidden h-64"></div>
         </div>
+        
       </div>
     </div>
   )

@@ -43,18 +43,18 @@ export default function Header({ title }) {
         
     }, []);
     return(
-        <div className="border-b flex flex-row  h-20">
-            <div className="w-80 flex-none justify-center flex items-center">
+        <div className="border-b flex h-20 flex-row">
+            <div className="md:w-80 flex-none justify-center flex items-center px-4">
                 <Link to="/">
-                <div className="text-4xl font-semibold">
-                    <span className="text-[#D40B29] hover:text-[#F00B29] ">Antony </span>
+                <div className="text-3xl md:text-4xl font-semibold">
+                    <span className="text-[#D40B29] hover:text-[#F00B29]">Antony </span>
                     <span className="text-black">Massage</span>
                 </div>
                 </Link>
             </div>
 
-            <div className="w-full flex-row flex justify-between items-center px-5">
-                <h1 className="text-xl text-[#D40B29] font-semibold">{title}</h1>
+            <div className="w-full flex-row flex justify-center md:justify-between items-center px-5">
+                <h1 className="text-xl text-[#D40B29] font-semibold hidden md:flex">{title}</h1>
                 
                 {!isLogin ? 
                     <Button />

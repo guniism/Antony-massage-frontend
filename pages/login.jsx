@@ -52,8 +52,8 @@ export default function Login(){
 
     }
     return(
-        <div className="flex justify-center pt-32">
-            <div className="flex flex-col justify-center w-96 space-y-6">
+        <div className="flex justify-center md:pt-32 pt-20">
+            <div className="flex flex-col justify-center w-96 space-y-6 p-5">
                 <Link to="/" className="mx-auto">
                 <div className="text-5xl font-semibold">
                     <span className="text-[#D40B29] hover:text-[#F00B29] ">Antony </span>
@@ -63,9 +63,9 @@ export default function Login(){
                 <h1 className='text-center font-semibold text-3xl'>Login</h1>
                 <form onSubmit={handleSubmit} className='flex flex-col justify-evenly'>
                     <h3 className='ml-2 font-normal text-lg mb-1 mt-3'>Email</h3>
-                    <input onChange={(e) => setEmail(e.target.value.toLowerCase())} className='rounded-2xl p-3 block mx-auto bg-[#F5F5F5] w-full text-gray' type='email' placeholder='Enter your email'></input>
+                    <input onChange={(e) => setEmail(e.target.value.toLowerCase())} className='border rounded-2xl p-3 block mx-auto  w-full text-gray' type='email' placeholder='Enter your email'></input>
                     <h3 className='ml-2 font-normal text-lg mb-1 mt-3'>Password</h3>
-                    <input onChange={(e) => setPassword(e.target.value)} className='rounded-2xl p-3 block mx-auto bg-[#F5F5F5] w-full text-gray mb-5' type='password' placeholder='Enter your password'></input>
+                    <input onChange={(e) => setPassword(e.target.value)} className='border rounded-2xl p-3 block mx-auto w-full text-gray mb-5' type='password' placeholder='Enter your password'></input>
 
                     {error && (
                         <div className='block rounded-2xl text-base text-[#D40B29] py-1 mx-auto w-full border border-[#D40B29] text-center'>{error}</div>
@@ -73,8 +73,8 @@ export default function Login(){
 
                     <button type='submit' className='hover:cursor-pointer block rounded-2xl text-xl mt-5 text-white py-4 mx-auto w-full bg-[#D40B29] font-semibold'>Login</button>
                     <div className='flex flex-row mt-4 text-lg mx-auto'>
-                        <p className=''>Don't have an account?</p>&nbsp;<Link href="/register" className='text-[#D40B29] font-semibold'>Register</Link>
-                    </div>
+                        <p className=''>Don't have an account?</p>&nbsp;<Link to="/register" className='text-[#D40B29] font-semibold'>Register</Link>
+                    </div> 
                 </form>
                 
             </div>
