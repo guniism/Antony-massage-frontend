@@ -5,7 +5,7 @@ import MakeReserve from '../pages/makereserve'
 import Profile from '../pages/profile'
 import Reservation from '../pages/myreservation'
 import Register from '../pages/register'
-import MassageShop from '../pages/massageShop'
+import MassageShop from '../pages/massageshop'
 function App() {
   return (
     <Router>
