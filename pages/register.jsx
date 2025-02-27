@@ -53,7 +53,7 @@ export default function Register(){
                 return;
             }
             
-
+            setSuccess("Register successful!");
             console.log("Register successful!", data);
         } catch (error) {
             setError("Error: " + error.message);
