@@ -10,32 +10,15 @@ export default function Login() {
 
   const router = useRouter();
 
-  const handleLogin = async () => {
-    try {
-      const res = await fetch("https://antony-massage-backend-production.up.railway.app/api/v1/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      const text = await res.text(); // Get full response body as text
-      console.log("🧾 Raw Response:", text);
-      console.log("📄 Status:", res.status);
-  
-      if (res.status === 404) {
-        throw new Error("❌ Endpoint not found. Check your API path.");
-      }
-  
-      const data = JSON.parse(text);
-      console.log("✅ Parsed JSON:", data);
-    } catch (err: any) {
-      setErrorMsg(err.message || "Something went wrong");
-    }
+  const handleLogin = () => {
+    console.log("Logging in...", email, password);
+    //const data = userLogIn(email, password)
+    /*if(data.success){
+        router.push("/")
+
+    }*/
   };
   
-
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">

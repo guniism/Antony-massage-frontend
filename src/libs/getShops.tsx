@@ -1,7 +1,6 @@
 import { MassageJson } from "../../interface";
 const getShops = async (): Promise<MassageJson> => {
-    await new Promise( (resolve) => setTimeout(resolve,300) );
-    const response = await fetch("https://a08-venue-explorer-backend.vercel.app/api/v1/venues")
+    const response = await fetch("https://antony-massage-backend-production.up.railway.app/api/v1/massage-shops")
     if(!response.ok){
         throw Error("Failed to fetch Venues")
     }
