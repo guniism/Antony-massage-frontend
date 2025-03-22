@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
 import userLogIn from "@/libs/userLogIn";
 
@@ -10,15 +10,19 @@ export default function Login() {
 
   const router = useRouter();
 
-  const handleLogin = () => {
-    console.log("Logging in...", email, password);
-    //const data = userLogIn(email, password)
-    /*if(data.success){
-        router.push("/")
-
-    }*/
+  const handleLogin = async () => {
+    const data = await userLogIn(email, password);
+    if(data){
+      router.push("/")
+    }
   };
   
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
