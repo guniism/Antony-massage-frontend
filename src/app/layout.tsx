@@ -23,7 +23,9 @@ export default function RootLayout({
       <body className={barlow.className}>
       <SideMenu/>
       <TopMenu/>
-      {children}
+      <div className="pl-64 min-h-screen">
+          {children}
+      </div>
       </body>
     </html>
   );
