@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import SideMenu from "@/components/SideMenu";
-import TopMenu from "@/components/TopMenu";
 import { Barlow_Semi_Condensed } from "next/font/google";
 const barlow = Barlow_Semi_Condensed({ 
   subsets: ["latin"], 
@@ -21,11 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={barlow.className}>
-      <SideMenu/>
-      <TopMenu/>
-      <div className="pl-64 min-h-screen">
-          {children}
-      </div>
+      {children}
       </body>
     </html>
   );

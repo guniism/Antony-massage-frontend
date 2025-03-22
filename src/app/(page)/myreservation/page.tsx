@@ -1,5 +1,5 @@
 import ReservationItem from "@/components/ReservationItem";
-import { ReserveItem } from "../../../interface";
+import { ReserveItem } from "../../../../interface";
 import dayjs from "dayjs";
 
 export default function ReservationPage() {

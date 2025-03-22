@@ -1,5 +1,5 @@
 import ShopItem from "@/components/ShopItem";
-import { MassageItem } from "../../../interface";
+import { MassageItem } from "../../../../interface";
 
 export default function massageShop() {
     const shops: MassageItem[] = [
