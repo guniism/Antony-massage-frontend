@@ -1,14 +1,55 @@
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import userLogIn from "@/libs/userLogIn";
+
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    try {
+      const res = await fetch("https://antony-massage-backend-production.up.railway.app/api/v1/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const text = await res.text(); // Get full response body as text
+      console.log("🧾 Raw Response:", text);
+      console.log("📄 Status:", res.status);
+  
+      if (res.status === 404) {
+        throw new Error("❌ Endpoint not found. Check your API path.");
+      }
+  
+      const data = JSON.parse(text);
+      console.log("✅ Parsed JSON:", data);
+    } catch (err: any) {
+      setErrorMsg(err.message || "Something went wrong");
+    }
+  };
+  
+
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 w-[200%] max-w-md">
-
-      <h1 className="text-3xl font-bold text-center mb-4">
+        <h1 className="text-3xl font-bold text-center mb-4">
           <span className="text-red-600">Antony</span>{" "}
           <span className="text-gray-900">Massage</span>
         </h1>
 
         <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">Login</h2>
+
+        {errorMsg && (
+          <p className="text-red-600 text-sm text-center mb-4">{errorMsg}</p>
+        )}
 
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-600 mb-2">Email / Username</label>
@@ -16,6 +57,7 @@ export default function Login() {
             type="text"
             placeholder="Enter your email or username"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -25,10 +67,14 @@ export default function Login() {
             type="password"
             placeholder="Enter your password"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        <button className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-red-700 transition">
+        <button
+          onClick={handleLogin}
+          className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-red-700 transition"
+        >
           Login
         </button>
 
