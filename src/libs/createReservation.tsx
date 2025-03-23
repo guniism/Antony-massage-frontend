@@ -1,15 +1,15 @@
 export interface ReservationPayload {
     massageShopId: string;
-    reservationDate: string; // ISO string format (e.g., 2025-03-23T14:00:00.000Z)
+    reserveDate: string; // ISO string format (e.g., 2025-03-23T14:00:00Z)
     token: string;
   }
   
   export default async function createReservation({
     massageShopId,
-    reservationDate,
+    reserveDate,
     token,
   }: ReservationPayload) {
-    console.log("createReservation", massageShopId, reservationDate, token);
+    console.log("createReservation", massageShopId, reserveDate, token);
     try {
       const response = await fetch(`https://antony-massage-backend-production.up.railway.app/api/v1/massage-shops/${massageShopId}/reservations`, {
         method: "POST",
@@ -17,7 +17,7 @@ export interface ReservationPayload {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ reservationDate }),
+        body: JSON.stringify({ reserveDate }),
       });
   
       const resText = await response.text(); // อ่าน raw response

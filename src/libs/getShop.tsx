@@ -1,4 +1,4 @@
-const getVenue = async (id:string) => {
+const getShop = async (id:string) => {
     await new Promise( (resolve) => setTimeout(resolve,300) );
     console.log(id)
     const response = await fetch(`https://a08-venue-explorer-backend.vercel.app/api/v1/venues/${id}`)
@@ -8,4 +8,4 @@ const getVenue = async (id:string) => {
     return response.json()
 }
 
-export default getVenue
+export default getShop

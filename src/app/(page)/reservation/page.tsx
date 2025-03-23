@@ -7,6 +7,9 @@ import getShops from "@/libs/getShops";
 import createReservation from "@/libs/createReservation";
 import { MassageItem } from "../../../../interface";
 import dayjs, { Dayjs } from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
 
 export default function Reservation() {
   const [shops, setShops] = useState<MassageItem[]>([]);
@@ -43,7 +46,7 @@ export default function Reservation() {
     try {
       const result = await createReservation({
         massageShopId: selectedShop,
-        reservationDate: selectedDate.toISOString(),
+        reserveDate: selectedDate.utc().format("YYYY-MM-DDTHH:mm:ss[Z]"),
         token,
       });
 
@@ -74,7 +77,7 @@ export default function Reservation() {
             value={selectedShop}
             onChange={(e) => setSelectedShop(e.target.value)}
           >
-            <option value="">Select Massage Shop</option>
+            <option value="" disabled>Select Massage Shop</option>
             {shops.map((shop) => (
               <option key={shop._id} value={shop._id}>
                 {shop.name}

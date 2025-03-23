@@ -27,8 +27,9 @@ export interface User{
 
 export interface ReserveItem {
   _id: string,
-  reserveDate: Dayjs,
-  user: User[],
-  massageShop: string,
+  reserveDate: string,
+  user: string,
+  massageShop: MassageItem,
   createdAt: Dayjs
 }
+
