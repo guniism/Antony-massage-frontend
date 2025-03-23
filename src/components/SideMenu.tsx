@@ -9,6 +9,10 @@ export default function SideMenu() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const logout = useUserLogOut();
 
+  const handleLogout = () => {
+    logout(() => setIsLoggedIn(false)); // update local state after logout
+  };
+
   useEffect(() => {
     const user = localStorage.getItem("user");
     setIsLoggedIn(!!user);
@@ -59,7 +63,7 @@ export default function SideMenu() {
       {isLoggedIn && (
         <div className="px-4 py-2 pb-4">
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="px-16 w-full flex items-center justify-between p-3 border border-red-600 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
           >
             <span>Logout</span>
