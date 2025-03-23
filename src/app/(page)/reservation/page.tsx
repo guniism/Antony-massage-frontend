@@ -46,7 +46,7 @@ export default function Reservation() {
     try {
       const result = await createReservation({
         massageShopId: selectedShop,
-        reserveDate: selectedDate.utc().format("YYYY-MM-DDTHH:mm:ss[Z]"),
+        reserveDate: selectedDate.format("YYYY-MM-DD"),
         token,
       });
 
