@@ -7,12 +7,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-
+  const [userData, setUserData] = useState(null);
   const router = useRouter();
 
   const handleLogin = async () => {
-    const data = await userLogIn(email, password);
-    if(data){
+    const userData = await userLogIn(email, password);
+    setUserData(userData);
+    if(userData){
       router.push("/")
     }
   };
