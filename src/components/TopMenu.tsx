@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function TopMenu() {
+export default function TopMenu({isLogin}: {isLogin: Boolean}) {
   const [userName, setUserName] = useState<string | null>(null);
   const router = useRouter();
-
+  
   useEffect(() => {
     try {
       const userData = localStorage.getItem("user");
@@ -28,7 +28,7 @@ export default function TopMenu() {
       </div>
 
       <div className="text-gray-700">
-        {userName ? (
+        {isLogin ? (
           `Hello, ${userName}`
         ) : (
           <button

@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { Home, Map, Calendar, User, LogOut, Plus } from "lucide-react";
 import useUserLogOut from "@/libs/userLogOut";
 
-export default function SideMenu() {
+export default function SideMenu({ setLogin }: { setLogin: (login:Boolean) => void }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const logout = useUserLogOut();
 
   const handleLogout = () => {
     logout(() => setIsLoggedIn(false)); // update local state after logout
+    setLogin(false);
   };
 
   useEffect(() => {
