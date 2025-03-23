@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import DateReserve from "@/components/DateReserve";
 import getShops from "@/libs/getShops";
 import { MassageItem } from "../../../../interface";
@@ -8,8 +9,15 @@ import { MassageItem } from "../../../../interface";
 export default function Reservation() {
   const [shops, setShops] = useState<MassageItem[]>([]);
   const [selectedShop, setSelectedShop] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
     const fetchShops = async () => {
       try {
         const data = await getShops();
@@ -20,7 +28,7 @@ export default function Reservation() {
     };
 
     fetchShops();
-  }, []);
+  }, [router]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">

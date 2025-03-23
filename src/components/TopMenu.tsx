@@ -1,8 +1,11 @@
 "use client";
+
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function TopMenu() {
   const [userName, setUserName] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     try {
@@ -16,15 +19,25 @@ export default function TopMenu() {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
     }
-  }, []);  
+  }, []);
 
   return (
     <div className="fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 bg-white border">
       <div className="text-2xl font-bold">
         <span className="text-red-600">Antony</span> Massage
       </div>
+
       <div className="text-gray-700">
-        {userName ? `Hello, ${userName}` : "Hello, guest"}
+        {userName ? (
+          `Hello, ${userName}`
+        ) : (
+          <button
+            onClick={() => router.push("/login")}
+            className="text-red-600 hover:underline font-medium"
+          >
+            Login
+          </button>
+        )}
       </div>
     </div>
   );

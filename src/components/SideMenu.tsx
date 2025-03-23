@@ -1,15 +1,27 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Home, Map, Calendar, User, LogOut, Plus } from "lucide-react";
+import useUserLogOut from "@/libs/userLogOut";
 
 export default function SideMenu() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const logout = useUserLogOut();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    setIsLoggedIn(!!user);
+  }, []);
+
   return (
     <div className="fixed w-64 h-screen bg-white border-r shadow-md pt-20 flex flex-col">
       <div className="px-4 py-2">
         <Link href="/reservation">
-        <button className="w-full p-3 text-white bg-red-600 border rounded-lg hover:bg-red-700 flex items-center justify-center gap-2">
-          <Plus size={18} />
-          <span>Make Reservation</span>
-        </button>
+          <button className="w-full p-3 text-white bg-red-600 border rounded-lg hover:bg-red-700 flex items-center justify-center gap-2">
+            <Plus size={18} />
+            <span>Make Reservation</span>
+          </button>
         </Link>
       </div>
 
@@ -44,12 +56,17 @@ export default function SideMenu() {
         </Link>
       </nav>
 
-      <div className="px-4 py-2 pb-4">
-        <button className="px-16 w-full flex items-center justify-between p-3 border border-red-600 text-red-600 rounded-lg hover:bg-red-100 transition-colors">
-          <span>Logout</span>
-          <LogOut size={18} />
-        </button>
-      </div>
+      {isLoggedIn && (
+        <div className="px-4 py-2 pb-4">
+          <button
+            onClick={logout}
+            className="px-16 w-full flex items-center justify-between p-3 border border-red-600 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+          >
+            <span>Logout</span>
+            <LogOut size={18} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
