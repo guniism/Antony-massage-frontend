@@ -59,7 +59,9 @@ export default function Reservation() {
       });
 
       alert("Reservation successful!");
-      router.push("/");
+      setSelectedShop("");
+      setSelectedDate(null);
+      // router.push("/");
     } catch (err: any) {
       console.error("Error making reservation:", err);
       alert(`Error: ${err.message}`);
