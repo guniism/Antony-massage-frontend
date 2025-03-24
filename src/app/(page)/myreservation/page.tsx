@@ -148,7 +148,7 @@ export default function ReservationPage() {
           />
         ))
       ) : (
-        <p className="text-center text-gray-600 text-lg">You don't have any reservations.</p>
+        <p className="text-center text-gray-600 text-lg">{!isAdmin ? "You don't have any reservations." : "Don't have any reservations."}</p>
       )}
       </div>
 

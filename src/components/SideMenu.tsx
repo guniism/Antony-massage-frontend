@@ -8,9 +8,22 @@ import useUserLogOut from "@/libs/userLogOut";
 
 export default function SideMenu({ setLogin }: { setLogin: (login: boolean) => void }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const logout = useUserLogOut();
   const pathname = usePathname();
   
+  const checkAdmin = (): boolean => {
+    try {
+      const userString = localStorage.getItem("user");
+      if (userString) {
+        const user = JSON.parse(userString);
+        return user.role === "admin";
+      }
+    } catch (error) {
+      console.error("Error parsing user data:", error);
+    }
+    return false;
+  };
 
   const handleLogout = () => {
     logout(() => setIsLoggedIn(false));
@@ -20,6 +33,7 @@ export default function SideMenu({ setLogin }: { setLogin: (login: boolean) => v
   useEffect(() => {
     const user = localStorage.getItem("user");
     setIsLoggedIn(!!user);
+    setIsAdmin(checkAdmin);
   }, []);
 
   return (
@@ -36,7 +50,7 @@ export default function SideMenu({ setLogin }: { setLogin: (login: boolean) => v
       <nav className="flex-1 px-4 py-2 space-y-2">
         <NavItem href="/" pathname={pathname} icon={Home} label="Home" />
         <NavItem href="/massageshop" pathname={pathname} icon={Map} label="Massage shops" />
-        <NavItem href="/myreservation" pathname={pathname} icon={Calendar} label="My reservations" />
+        <NavItem href="/myreservation" pathname={pathname} icon={Calendar} label={isAdmin ? "All reservations" : "My reservations"} />
         <NavItem href="/profile" pathname={pathname} icon={User} label="Profile" />
       </nav>
 
