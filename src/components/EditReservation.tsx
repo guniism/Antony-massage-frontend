@@ -10,17 +10,25 @@ import dayjs, { Dayjs } from "dayjs";
 
 export default function EditReservation({
   reservationId,
+  reservationShopId,
+  reservationDate,
   onClose,
   onUpdate,
 }: {
-  reservationId: string;
-  onClose: () => void;
-  onUpdate: (reservationId: string, updatedData: any) => void;
+  reservationId: string,
+  reservationShopId: string,
+  reservationDate: Dayjs,
+  onClose: () => void,
+  onUpdate: (reservationId: string, updatedData: any) => void,
 }) {
   const [shops, setShops] = useState<MassageItem[]>([]);
-  const [selectedShop, setSelectedShop] = useState("");
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+  const [selectedShop, setSelectedShop] = useState(reservationShopId);
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(reservationDate);
   const router = useRouter();
+
+  // console.log("Reservation ID2:", reservationId);
+  // console.log("Shop ID2:", selectedShop);
+  // console.log("Reservation Date2:", selectedDate);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -63,7 +71,7 @@ export default function EditReservation({
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+    <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl">
       <div className="mb-4 w-full">
         <label className="block text-lg font-semibold mb-2 w-full">
           Date Reservation
@@ -74,7 +82,7 @@ export default function EditReservation({
       <div className="mb-6">
         <label className="block text-lg font-semibold mb-2">Massage Shop</label>
         <select
-          className="w-full border rounded-lg p-3 bg-gray-50"
+          className="w-full rounded-lg p-3 bg-gray-100 text-gray-700 hover:cursor-pointer"
           value={selectedShop}
           onChange={(e) => setSelectedShop(e.target.value)}
         >
@@ -90,13 +98,13 @@ export default function EditReservation({
       <div className="flex gap-4">
         <button
           onClick={onClose}
-          className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-gray-500 transition"
+          className="w-full bg-gray-800 text-white py-3 rounded-lg font-semibold text-lg hover:bg-gray-700 hover:cursor-pointer transition"
         >
           Cancel
         </button>
         <button
           onClick={handleUpdate}
-          className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-gray-500 transition"
+          className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-green-500 hover:cursor-pointer transition"
         >
           Update
         </button>

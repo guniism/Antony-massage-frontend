@@ -10,8 +10,8 @@ export default function ShopItem({ shop }: { shop: MassageItem }) {
                 <p className="text-gray-500">Tel: {shop.tel}</p>
                 <p className="text-gray-500">Open: {shop.openTime} - {shop.closeTime}</p>
             </div>
-            <Link href="/reservation">
-                <button className="bg-red-500 text-white px-4 py-2 rounded-lg">Reserve</button>
+            <Link href={`/reservation?shopId=${shop._id}`}>
+                <button className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg hover:cursor-pointer">Reserve</button>
             </Link>
         </div>
     );

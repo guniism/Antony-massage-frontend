@@ -2,15 +2,18 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Home, Map, Calendar, User, LogOut, Plus } from "lucide-react";
 import useUserLogOut from "@/libs/userLogOut";
 
-export default function SideMenu({ setLogin }: { setLogin: (login:Boolean) => void }) {
+export default function SideMenu({ setLogin }: { setLogin: (login: boolean) => void }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const logout = useUserLogOut();
+  const pathname = usePathname();
+  
 
   const handleLogout = () => {
-    logout(() => setIsLoggedIn(false)); // update local state after logout
+    logout(() => setIsLoggedIn(false));
     setLogin(false);
   };
 
@@ -20,52 +23,28 @@ export default function SideMenu({ setLogin }: { setLogin: (login:Boolean) => vo
   }, []);
 
   return (
-    <div className="fixed w-64 h-screen bg-white border-r shadow-md pt-20 flex flex-col">
+    <div className="fixed w-70 h-screen bg-white border-gray-200 border-r pt-22 flex flex-col">
       <div className="px-4 py-2">
-        <Link href="/reservation">
-          <button className="w-full p-3 text-white bg-red-600 border rounded-lg hover:bg-red-700 flex items-center justify-center gap-2">
-            <Plus size={18} />
+        <Link href="/reservation" >
+          <button className="hover:cursor-pointer w-full p-3 text-white bg-red-600 border rounded-lg hover:bg-red-500 flex items-center gap-2 transition">
+            <Plus size={20} />
             <span>Make Reservation</span>
           </button>
         </Link>
       </div>
 
       <nav className="flex-1 px-4 py-2 space-y-2">
-        <Link
-          href="/"
-          className="flex items-center gap-3 p-3 rounded-lg text-gray-700 hover:text-red-600 hover:bg-gray-100 transition-colors"
-        >
-          <Home size={20} />
-          Home
-        </Link>
-        <Link
-          href="/massageshop"
-          className="flex items-center gap-3 p-3 rounded-lg text-gray-700 hover:text-red-600 hover:bg-gray-100 transition-colors"
-        >
-          <Map size={20} />
-          Massage shops
-        </Link>
-        <Link
-          href="/myreservation"
-          className="flex items-center gap-3 p-3 rounded-lg text-gray-700 hover:text-red-600 hover:bg-gray-100 transition-colors"
-        >
-          <Calendar size={20} />
-          My reservations
-        </Link>
-        <Link
-          href="/profile"
-          className="flex items-center gap-3 p-3 rounded-lg text-gray-700 hover:text-red-600 hover:bg-gray-100 transition-colors"
-        >
-          <User size={20} />
-          Profile
-        </Link>
+        <NavItem href="/" pathname={pathname} icon={Home} label="Home" />
+        <NavItem href="/massageshop" pathname={pathname} icon={Map} label="Massage shops" />
+        <NavItem href="/myreservation" pathname={pathname} icon={Calendar} label="My reservations" />
+        <NavItem href="/profile" pathname={pathname} icon={User} label="Profile" />
       </nav>
 
       {isLoggedIn && (
         <div className="px-4 py-2 pb-4">
           <button
             onClick={handleLogout}
-            className="px-16 w-full flex items-center justify-between p-3 border border-red-600 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+            className="px-16 w-full flex items-center justify-between p-3 border border-red-600 text-red-600 rounded-lg hover:bg-red-100 hover:cursor-pointer transition-colors"
           >
             <span>Logout</span>
             <LogOut size={18} />
@@ -73,5 +52,26 @@ export default function SideMenu({ setLogin }: { setLogin: (login:Boolean) => vo
         </div>
       )}
     </div>
+  );
+}
+
+type NavItemProps = {
+  href: string;
+  pathname: string;
+  icon: React.ElementType;
+  label: string;
+};
+
+function NavItem({ href, pathname, icon: Icon, label }: NavItemProps) {
+  const isActive = pathname === href;
+
+  return (
+    <Link
+      href={href}
+      className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${isActive ? "bg-gray-100 text-red-600" : "text-gray-700 hover:text-gray-950 hover:bg-gray-100"}`}
+    >
+      <Icon size={20} />
+      {label}
+    </Link>
   );
 }

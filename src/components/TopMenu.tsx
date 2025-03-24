@@ -1,12 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 export default function TopMenu({isLogin}: {isLogin: Boolean}) {
   const [userName, setUserName] = useState<string | null>(null);
   const router = useRouter();
-  
+  const pathname = usePathname();
+
+  const getPageTitle = () => {
+    const titles: { [key: string]: string } = {
+      "/": "Home",
+      "/massageshop": "Massage Shops",
+      "/reservation": "Make Reservation",
+      "/myreservation": "My Reservations",
+      "/profile": "Profile",
+    };
+
+    return titles[pathname] || "";
+  };
+
   useEffect(() => {
     try {
       const userData = localStorage.getItem("user");
@@ -22,23 +35,27 @@ export default function TopMenu({isLogin}: {isLogin: Boolean}) {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 bg-white border">
-      <div className="text-2xl font-bold">
+    <div className="fixed top-0 left-0 w-full flex items-center py-4 bg-white border-b border-gray-200 h-[80px]">
+      <Link href="/" className="text-4xl font-bold w-72 text-center flex-shrink-0">
         <span className="text-red-600">Antony</span> Massage
-      </div>
+      </Link>
 
-      <div className="text-gray-700">
-        {isLogin ? (
-          `Hello, ${userName}`
-        ) : (
-          <button
-            onClick={() => router.push("/login")}
-            className="text-red-600 hover:underline font-medium"
-          >
-            Login
-          </button>
-        )}
+      <div className="w-full px-6 flex justify-between items-center">
+      <h1 className="text-lg text-red-600 font-semibold">{getPageTitle()}</h1>
+        <div className="text-gray-700 text-lg">
+          {isLogin ? (
+            `Hello, ${userName}`
+          ) : (
+            <button
+              onClick={() => router.push("/login")}
+              className="bg-red-600 hover:bg-red-500 text-white px-6 py-2 rounded-lg hover:cursor-pointer font-semibold"
+            >
+              Login
+            </button>
+          )}
+        </div>
       </div>
+      
     </div>
   );
 }
