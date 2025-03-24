@@ -1,18 +1,20 @@
-import ShopItem from "@/components/ShopItem";
-import { MassageItem } from "../../../../interface";
-import getShops from "@/libs/getShops";
+import { Suspense } from "react";
+import MassageShops from "@/components/MassageShops";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export default async function massageShop() {
-    
-    const shops = await getShops();
-
+export default async function massageShopPage() {
     return (
-        <div className="flex flex-col items-center p-6 w-full ">
-            <div className="w-full max-w-4xl space-y-4 mt-15">
-                {shops.data.map((shop) => (
-                    <ShopItem key={shop._id} shop={shop} />
-                ))}
-            </div>
+        <div className="flex flex-col items-center p-10 w-full ">
+            <Suspense
+            fallback={
+                <div className="flex flex-col items-center -mt-10 justify-center h-screen space-y-4">
+                <CircularProgress sx={{ color: "rgb(220, 38, 38)" }} size={60} thickness={5} />
+                <p className="text-lg font-semibold text-gray-600">Loading...</p>
+                </div>
+            }
+            >
+            <MassageShops />
+            </Suspense>
         </div>
     );
 }

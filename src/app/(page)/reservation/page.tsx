@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import DateReserve from "@/components/DateReserve";
 import getShops from "@/libs/getShops";
 import createReservation from "@/libs/createReservation";
@@ -16,6 +16,14 @@ export default function Reservation() {
   const [selectedShop, setSelectedShop] = useState("");
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  useEffect(() => {
+    const shopId = searchParams.get("shopId");
+    if (shopId) {
+      setSelectedShop(shopId);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -73,7 +81,7 @@ export default function Reservation() {
             Massage Shop
           </label>
           <select
-            className="w-full border rounded-lg p-3 bg-gray-50"
+            className="w-full rounded-lg p-3 bg-gray-100 text-gray-700 hover:cursor-pointer"
             value={selectedShop}
             onChange={(e) => setSelectedShop(e.target.value)}
           >
@@ -88,7 +96,7 @@ export default function Reservation() {
 
         <button
           onClick={handleReservation}
-          className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-red-700 transition"
+          className="hover:cursor-pointer w-full bg-red-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-red-500 transition"
         >
           Make a reservation
         </button>
