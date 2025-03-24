@@ -10,14 +10,28 @@ export default function EditProfile({
 }: {
   user: User;
   onClose: () => void;
-  onUpdate: (updatedUser: Partial<User>) => void;
+  onUpdate: (updatedUser: { name: string; tel: string; password?: string }) => void;
 }) {
   const [name, setName] = useState(user.name || "");
-  const [username, setUsername] = useState(user.username || "");
   const [tel, setTel] = useState(user.tel || "");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
-    onUpdate({ name, username, tel });
+    if (!name || !tel) {
+      alert("Please fill in name and telephone.");
+      return;
+    }
+
+    const updatedData: { name: string; tel: string; password?: string } = {
+      name,
+      tel,
+    };
+
+    if (password.trim() !== "") {
+      updatedData.password = password;
+    }
+
+    onUpdate(updatedData);
     onClose();
   };
 
@@ -36,22 +50,22 @@ export default function EditProfile({
       </div>
 
       <div className="mb-4">
-        <label className="block font-medium mb-1">Username</label>
-        <input
-          type="text"
-          className="w-full border rounded-lg p-2"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-
-      <div className="mb-6">
         <label className="block font-medium mb-1">Telephone</label>
         <input
           type="text"
           className="w-full border rounded-lg p-2"
           value={tel}
           onChange={(e) => setTel(e.target.value)}
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block font-medium mb-1">New Password (optional)</label>
+        <input
+          type="password"
+          className="w-full border rounded-lg p-2"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
@@ -70,6 +84,5 @@ export default function EditProfile({
         </button>
       </div>
     </div>
-    
   );
 }
