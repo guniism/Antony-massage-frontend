@@ -7,7 +7,7 @@ export default async function userLogIn(userEmail: string, userPassword: string)
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                email: userEmail,
+                identifier: userEmail,
                 password: userPassword
             })
         });

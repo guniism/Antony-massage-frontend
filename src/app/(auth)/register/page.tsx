@@ -35,9 +35,9 @@ export default function Register() {
           name,
           username,
           email,
-          tel,
           password,
-          role: "user"
+          role: "user",
+          tel
         }),
       });
 
