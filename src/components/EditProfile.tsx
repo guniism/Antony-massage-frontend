@@ -22,34 +22,34 @@ export default function EditProfile({
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+    <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl">
       <h2 className="text-xl font-semibold mb-4 text-center">Edit Profile</h2>
 
       <div className="mb-4">
-        <label className="block font-medium mb-1">Name</label>
+        <label className="block text-lg font-semibold mb-2">Name</label>
         <input
           type="text"
-          className="w-full border rounded-lg p-2"
+          className="w-full rounded-lg p-3 bg-gray-100 text-gray-700"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
 
       <div className="mb-4">
-        <label className="block font-medium mb-1">Username</label>
+        <label className="block text-lg font-semibold mb-2">Username</label>
         <input
           type="text"
-          className="w-full border rounded-lg p-2"
+          className="w-full rounded-lg p-3 bg-gray-100 text-gray-700"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
 
       <div className="mb-6">
-        <label className="block font-medium mb-1">Telephone</label>
+        <label className="block text-lg font-semibold mb-2">Telephone</label>
         <input
           type="text"
-          className="w-full border rounded-lg p-2"
+          className="w-full rounded-lg p-3 bg-gray-100 text-gray-700"
           value={tel}
           onChange={(e) => setTel(e.target.value)}
         />
@@ -58,13 +58,13 @@ export default function EditProfile({
       <div className="flex gap-4">
         <button
           onClick={onClose}
-          className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700"
+          className="w-full bg-gray-800 text-white py-3 rounded-lg font-semibold text-lg hover:bg-gray-700 hover:cursor-pointer transition"
         >
           Cancel
         </button>
         <button
           onClick={handleSubmit}
-          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-500"
+          className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-green-500 hover:cursor-pointer transition"
         >
           Save
         </button>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { User } from "../../../../interface";
 import EditProfile from "@/components/EditProfile";
+import updateUser from "@/libs/updateUser";
 
 export default function Profile() {
   const [user, setUser] = useState<User | null>(null);
@@ -30,6 +31,25 @@ export default function Profile() {
   }, [router]);
 
   if (!user) return <div className="text-center pt-20">Loading...</div>;
+
+  const handleUpdateUser = async (updatedUserData: Partial<User>) => {
+    try {
+      const token = localStorage.getItem("token");
+      const newUser = { ...user, ...updatedUserData };
+      // console.log(newUser);
+      const updatedUser = await updateUser(newUser, token);
+      if(updatedUser){
+        alert("Update user successful!");
+        localStorage.setItem("user", JSON.stringify(newUser));
+        setUser(newUser);
+      }
+
+    } catch (error) {
+      alert(("Error updating user:"+ error));
+    }
+
+  };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white pt-15">
@@ -66,7 +86,7 @@ export default function Profile() {
           <div className="pt-4">
           <button
               onClick={() => setEditPopup(true)}
-              className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition"
+              className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition hover:cursor-pointer"
             >
               Edit profile
             </button>
@@ -79,9 +99,11 @@ export default function Profile() {
           user={user}
           onClose={() => setEditPopup(false)}
           onUpdate={(updatedUser) => {
-            const newUser = { ...user, ...updatedUser };
-            localStorage.setItem("user", JSON.stringify(newUser));
-            setUser(newUser);
+            // const newUser = { ...user, ...updatedUser };
+            // localStorage.setItem("user", JSON.stringify(newUser));
+            // console.log(updatedUser);
+            // setUser(newUser);
+            handleUpdateUser(updatedUser);
           }}
         />
       </div>
