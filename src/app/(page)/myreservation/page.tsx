@@ -166,7 +166,7 @@ export default function ReservationPage() {
 
       {deletePopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
-          <ConfirmPopup onClose={handleCloseDelete} onDelete={handleDelete}/>
+          <ConfirmPopup onClose={handleCloseDelete} onDelete={handleDelete} title={"Are you sure you want to delete this reservation?"}/>
         </div>
       )}
     </div>

@@ -1,6 +1,5 @@
 export default async function deleteReservation(reservationId: string, token: string) {
     try {
-      const token = localStorage.getItem("token");
       if (!token) {
         alert("You need to be logged in to delete a reservation.");
         return;
