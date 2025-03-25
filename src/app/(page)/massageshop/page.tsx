@@ -113,7 +113,7 @@ export default function massageShopPage() {
 
     return (
         <div className="flex flex-col items-center p-10 w-full pt-20 md:pt-10">
-                <div className="w-full max-w-4xl space-y-4 mt-16">
+                <div className="w-full max-w-4xl space-y-4 mt-16 mb-24 md:mb-0">
                     <div className="flex flex-row space-x-4">
                         {isAdmin && (
                             <button onClick={()=>{setShowAddShop(true)}} className="w-full bg-gray-800 text-white py-3 rounded-lg font-semibold text-lg hover:bg-gray-700 hover:cursor-pointer transition">
