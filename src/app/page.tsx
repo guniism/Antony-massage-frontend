@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <Menu/>
-      <div className="pl-70 min-h-screen">
+      <div className="md:pl-70 min-h-screen">
           <Banner/>
       </div>
     </div>

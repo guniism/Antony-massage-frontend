@@ -58,14 +58,14 @@ export default function TopMenu({isLogin}: {isLogin: Boolean}) {
 
 
   return (
-    <div className="fixed top-0 left-0 w-full flex items-center py-4 bg-white border-b border-gray-200 h-[80px]">
+    <div className="fixed top-0 left-0 w-full flex items-center py-4 bg-white border-b border-gray-200 md:h-[80px] flex-col md:flex-row space-y-5 md:space-y-0">
       <Link href="/" className="text-4xl font-bold w-72 text-center flex-shrink-0">
         <span className="text-red-600">Antony</span> Massage
       </Link>
 
       <div className="w-full px-6 flex justify-between items-center">
-      <h1 className="text-lg text-red-600 font-semibold">{getPageTitle()}</h1>
-        <div className="text-gray-700 text-lg">
+      <h1 className="text-lg text-red-600 font-semibold ">{getPageTitle()}</h1>
+        <div className="text-gray-700 text-lg ">
           {isLogin ? (
             getShowHello() ? (`Hello, ${userName}`) : null
           ) : (

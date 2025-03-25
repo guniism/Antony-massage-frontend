@@ -66,7 +66,7 @@ export default function EditReservation({
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl">
+    <div className="bg-white shadow-lg rounded-lg p-8 w-full md:max-w-xl max-w-xs">
       <div className="mb-4 w-full">
         <label className="block text-lg font-semibold mb-2 w-full">
           Date Reservation

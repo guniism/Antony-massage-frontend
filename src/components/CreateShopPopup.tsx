@@ -60,7 +60,7 @@ export default function CreateShopPopup({
   
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl">
+    <div className="bg-white shadow-lg rounded-lg p-8 w-full md:max-w-xl max-w-xs">
       <h2 className="text-xl font-semibold mb-4 text-center">Add massage shop</h2>
 
       <div className="mb-4">

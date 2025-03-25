@@ -112,7 +112,7 @@ export default function massageShopPage() {
     }
 
     return (
-        <div className="flex flex-col items-center p-10 w-full ">
+        <div className="flex flex-col items-center p-10 w-full pt-20 md:pt-10">
                 <div className="w-full max-w-4xl space-y-4 mt-16">
                     <div className="flex flex-row space-x-4">
                         {isAdmin && (

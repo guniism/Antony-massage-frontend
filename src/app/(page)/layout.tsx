@@ -3,7 +3,7 @@ export default function HomeLayout({children}:{children:React.ReactNode}) {
     return (
         <div>
             <Menu/>
-            <div className="pl-70 min-h-screen">
+            <div className="md:pl-70 min-h-screen">
                 {children}
             </div>
         </div>
