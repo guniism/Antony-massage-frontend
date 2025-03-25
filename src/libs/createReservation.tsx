@@ -15,7 +15,7 @@ export interface ReservationPayload {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({ reserveDate }),
       });
@@ -23,7 +23,8 @@ export interface ReservationPayload {
       const resText = await response.text(); // อ่าน raw response
       if (!response.ok) {
         console.error("API Error:", resText); // ✅ Log error จาก API
-        throw new Error("Reservation failed");
+        // throw new Error("Reservation failed");
+        throw new Error(JSON.parse(resText).message);
       }
   
       return JSON.parse(resText); // ถ้า response.ok จริง ค่อย parse เป็น JSON

@@ -5,12 +5,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { User } from "../../../../interface";
 import EditProfile from "@/components/EditProfile";
+import { LogOut } from "lucide-react";
 import updateUser from "@/libs/updateUser";
+import useUserLogOut from "@/libs/userLogOut";
 
 export default function Profile() {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
   const [editPopup, setEditPopup] = useState(false);
+ const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const logout = useUserLogOut();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -50,9 +54,12 @@ export default function Profile() {
 
   };
 
+  const handleLogout = () => {
+    logout(() => setIsLoggedIn(false));
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white pt-15">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white pt-20 md:pt-16 mt-10 md:mt-0">
       <div className="bg-white rounded-lg p-8 w-full max-w-2xl">
         <div className="flex items-center justify-center mb-6">
           <Image
@@ -90,24 +97,36 @@ export default function Profile() {
             >
               Edit profile
             </button>
+                <div className="w-full pb-4 mt-3">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center justify-center p-3 border border-red-600 text-red-600 rounded-lg hover:bg-red-100 hover:cursor-pointer transition-colors"
+          >
+            <div className="flex items-center justify-between w-20 text-lg">
+              <span>Logout</span>
+              <LogOut size={18} />
+            </div>
+          </button>
+        </div>
           </div>
         </div>
       </div>
       {editPopup && user && (
-      <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)] z-50">
-        <EditProfile
-          user={user}
-          onClose={() => setEditPopup(false)}
-          onUpdate={(updatedUser) => {
-            // const newUser = { ...user, ...updatedUser };
-            // localStorage.setItem("user", JSON.stringify(newUser));
-            // console.log(updatedUser);
-            // setUser(newUser);
-            handleUpdateUser(updatedUser);
-          }}
-        />
-      </div>
-    )}
+        <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)] z-50">
+          <EditProfile
+            user={user}
+            onClose={() => setEditPopup(false)}
+            onUpdate={(updatedUser) => {
+              // const newUser = { ...user, ...updatedUser };
+              // localStorage.setItem("user", JSON.stringify(newUser));
+              // console.log(updatedUser);
+              // setUser(newUser);
+              handleUpdateUser(updatedUser);
+            }}
+          />
+        </div>
+      )}
+
     </div>
   );
 }

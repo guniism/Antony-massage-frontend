@@ -129,7 +129,7 @@ export default function ReservationPage() {
   }
 
   return (
-    <div className="flex flex-col items-center p-10 w-full">
+    <div className="flex flex-col items-center p-10 w-full pt-20 md:pt-10">
       <div className="w-full max-w-4xl space-y-4 mt-15">
       {reservations.length > 0 ? (
         reservations.map((reservation) => (
@@ -148,7 +148,7 @@ export default function ReservationPage() {
           />
         ))
       ) : (
-        <p className="text-center text-gray-600 text-lg">You don't have any reservations.</p>
+        <p className="text-center text-gray-600 text-lg">{!isAdmin ? "You don't have any reservations." : "Don't have any reservations."}</p>
       )}
       </div>
 
@@ -166,7 +166,7 @@ export default function ReservationPage() {
 
       {deletePopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
-          <ConfirmPopup onClose={handleCloseDelete} onDelete={handleDelete}/>
+          <ConfirmPopup onClose={handleCloseDelete} onDelete={handleDelete} title={"Are you sure you want to delete this reservation?"}/>
         </div>
       )}
     </div>

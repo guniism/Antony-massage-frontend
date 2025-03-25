@@ -1,4 +1,4 @@
-"use client";
+"use client";  // Ensures this runs only on the client side
 
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -23,7 +23,7 @@ export default function Reservation() {
     if (shopId) {
       setSelectedShop(shopId);
     }
-  }, [searchParams]);
+  }, [searchParams]);  // Add searchParams as a dependency
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -61,7 +61,7 @@ export default function Reservation() {
       alert("Reservation successful!");
       setSelectedShop("");
       setSelectedDate(null);
-      // router.push("/");
+      // router.push("/"); // Uncomment if you want to redirect after success
     } catch (err: any) {
       console.error("Error making reservation:", err);
       alert(`Error: ${err.message}`);

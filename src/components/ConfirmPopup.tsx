@@ -1,9 +1,9 @@
-export default function ConfirmPopup({ onClose, onDelete }: { onClose: () => void, onDelete: () => void }){
+export default function ConfirmPopup({ onClose, onDelete, title }: { onClose: () => void, onDelete: () => void, title: string }){
     return (
-    <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl">
+    <div className="bg-white shadow-lg rounded-lg p-8 w-full md:max-w-xl max-w-xs">
         <div className="mb-4 w-full">
             <label className="block text-lg font-semibold mb-2 w-full text-center">
-            Are you sure you want to delete this booking?
+            {title}
             </label>
         </div>
 

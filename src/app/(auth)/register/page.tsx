@@ -62,7 +62,7 @@ export default function Register() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-20">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-[200%] max-w-md">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-[200%] md:max-w-md max-w-xs">
         <h1 className="text-3xl font-bold text-center mb-2">
           <span className="text-red-600">Antony</span>{" "}
           <span className="text-gray-900">Massage</span>
