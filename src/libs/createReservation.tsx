@@ -1,6 +1,6 @@
 export interface ReservationPayload {
     massageShopId: string;
-    reserveDate: string; // ISO string format (e.g., 2025-03-23T14:00:00Z)
+    reserveDate: string; 
     token: string;
   }
   
@@ -20,14 +20,13 @@ export interface ReservationPayload {
         body: JSON.stringify({ reserveDate }),
       });
   
-      const resText = await response.text(); // อ่าน raw response
+      const resText = await response.text(); 
       if (!response.ok) {
-        console.error("API Error:", resText); // ✅ Log error จาก API
-        // throw new Error("Reservation failed");
+        console.error("API Error:", resText); 
         throw new Error(JSON.parse(resText).message);
       }
   
-      return JSON.parse(resText); // ถ้า response.ok จริง ค่อย parse เป็น JSON
+      return JSON.parse(resText); 
     } catch (error) {
       throw error;
     }

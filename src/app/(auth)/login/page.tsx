@@ -11,11 +11,21 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = async () => {
-    const userData = await userLogIn(email, password);
-    setUserData(userData);
-    if(userData){
-      router.push("/")
+    if (!email ||!password) {
+      setErrorMsg("All fields are required");
+      return;
     }
+    try{
+      const userData = await userLogIn(email, password);
+      setUserData(userData);
+      setErrorMsg("")
+      if(userData){
+        router.push("/")
+      }
+    }catch(err: any){
+        setErrorMsg("Login Failed (Username or Password is wrong)");
+    }
+  
   };
   
   useEffect(() => {

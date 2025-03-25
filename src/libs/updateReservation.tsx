@@ -11,7 +11,6 @@ export interface UpdateReservationPayload {
     reserveDate,
     token,
   }: UpdateReservationPayload) {
-    // console.log("updateReservationss", reservationId, massageShopId, reserveDate, token);
     try {
       const response = await fetch(
         `https://antony-massage-backend-production.up.railway.app/api/v1/reservations/${reservationId}`,
@@ -21,7 +20,6 @@ export interface UpdateReservationPayload {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          // body: JSON.stringify({ test, reserveDate }),
           body: JSON.stringify({
             reserveDate: reserveDate,
             massageShop: massageShopId

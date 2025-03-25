@@ -1,5 +1,5 @@
 export default async function userLogIn(userEmail: string, userPassword: string) {
-    try {
+    
         // 1. Login request
         const loginResponse = await fetch("https://antony-massage-backend-production.up.railway.app/api/v1/auth/login", {
             method: "POST",
@@ -36,7 +36,5 @@ export default async function userLogIn(userEmail: string, userPassword: string)
         localStorage.setItem("user", JSON.stringify(userData.data)); 
         console.log("User data:", userData.data);   
         return userData; 
-    } catch (error) {
-        console.error("Error during login or fetching user info:", error);
-    }
+    
 }
